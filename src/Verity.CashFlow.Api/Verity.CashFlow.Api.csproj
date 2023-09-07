@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Verity.CashFlow.Contracts\Verity.CashFlow.Contracts.csproj" />
+    <ProjectReference Include="..\Verity.CashFlow.Application\Verity.CashFlow.Application.csproj" />
+    <ProjectReference Include="..\Verity.CashFlow.Infrastructure\Verity.CashFlow.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
