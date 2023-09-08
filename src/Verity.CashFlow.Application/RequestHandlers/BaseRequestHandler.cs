@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Verity.CashFlow.Application.RequestHandlers;
+﻿namespace Verity.CashFlow.Application.RequestHandlers;
 
 public abstract class BaseRequestHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

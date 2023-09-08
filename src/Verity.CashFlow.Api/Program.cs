@@ -1,5 +1,7 @@
 using Verity.CashFlow.Infrastructure;
 using Verity.CashFlow.Application;
+using Microsoft.Extensions.DependencyInjection;
+using Verity.CashFlow.Contracts.Convertes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +11,16 @@ builder
     .Services
     .AddApplication()
     .AddInfra(configuration)
-    .AddControllers();
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen()
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+    });
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
 ﻿namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
 
-internal class Repository<TEntity> : IRepository<TEntity>
+public class Repository<TEntity> : IRepository<TEntity>
     where TEntity : Entity
 {
     public Repository(CashFlowContext context)

@@ -1,7 +1,4 @@
-﻿using OperationResult;
-using Verity.CashFlow.Contracts.Requests.Queries;
-
-namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
+﻿namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
 
 internal class GetTransactionsQueryHandler : BaseQueryHandler<GetTransactionQuery, Result>
 {

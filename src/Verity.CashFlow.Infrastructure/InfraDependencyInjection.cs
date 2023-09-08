@@ -20,6 +20,7 @@ public static class InfraDependencyInjection
     public static IServiceCollection AddRepositories(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        serviceCollection.AddScoped<ITransactionRepository, TransactionRepository>();
         return serviceCollection;
     }
 

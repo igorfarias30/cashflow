@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-using Verity.CashFlow.Domain.Primitives;
-namespace Verity.CashFlow.Application.Repositories;
+﻿namespace Verity.CashFlow.Application.Repositories;
 
 public interface IRepository<TEntity>
     where TEntity : Entity
