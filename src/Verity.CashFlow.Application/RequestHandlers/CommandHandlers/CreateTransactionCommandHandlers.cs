@@ -17,6 +17,7 @@ public class CreateTransactionCommandHandlers : BaseCommandHandlers<CreateTransa
                 request.AmountInCents,
                 request.Description,
                 request.Type,
+                request.Status,
                 request.Comment
             );
 

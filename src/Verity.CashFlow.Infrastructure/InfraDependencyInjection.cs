@@ -12,8 +12,6 @@ public static class InfraDependencyInjection
                 .UseNpgsql(connection!);
         });
 
-        //serviceCollection.AddScoped<IApplicationDbContext, CondManagerContext>();
-
         return serviceCollection;
     }
 

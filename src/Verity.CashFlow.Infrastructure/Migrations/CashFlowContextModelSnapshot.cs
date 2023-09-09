@@ -43,6 +43,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
@@ -52,6 +55,38 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Transactions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("3dee5685-34a5-4c23-8a67-ba0aff22dcf3"),
+                            AmountInCents = 1500L,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateOfTransaction = new DateOnly(2023, 9, 9),
+                            Description = "2 milks",
+                            Status = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("e354c9b9-8746-40f8-b527-c75b75e062da"),
+                            AmountInCents = 5000L,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateOfTransaction = new DateOnly(2023, 9, 9),
+                            Description = "10 rice",
+                            Status = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("7413e79e-db3a-4e6c-93ee-ed4d62c490b3"),
+                            AmountInCents = 3000L,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateOfTransaction = new DateOnly(2023, 9, 9),
+                            Description = "20 salt",
+                            Status = 0,
+                            Type = 0
+                        });
                 });
 #pragma warning restore 612, 618
         }

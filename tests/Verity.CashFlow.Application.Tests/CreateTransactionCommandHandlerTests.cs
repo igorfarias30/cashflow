@@ -19,7 +19,8 @@ public class CreateTransactionCommandHandlerTests
             new DateOnly(),
             1000,
             "Selling 100 pepeers",
-            TransactionType.Credit,
+            TransactionType.Income,
+            TransactionStatus.Received,
             null
         );
 

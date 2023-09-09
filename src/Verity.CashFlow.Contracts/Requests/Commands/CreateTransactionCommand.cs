@@ -8,5 +8,6 @@ public record struct CreateTransactionCommand(
     long AmountInCents,
     string Description,
     TransactionType Type,
+    TransactionStatus Status,
     string? Comment
 ) : ICommand<Result>;
