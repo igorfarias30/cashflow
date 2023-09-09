@@ -3,23 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verity.CashFlow.Api", "src\Verity.CashFlow.Api\Verity.CashFlow.Api.csproj", "{AD7F6355-FD07-43BB-BB9C-B7295F82727D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verity.CashFlow.Api", "src\Verity.CashFlow.Api\Verity.CashFlow.Api.csproj", "{AD7F6355-FD07-43BB-BB9C-B7295F82727D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verity.CashFlow.Application", "src\Verity.CashFlow.Application\Verity.CashFlow.Application.csproj", "{457D9C7E-09EF-4082-AD29-02630B2872CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verity.CashFlow.Application", "src\Verity.CashFlow.Application\Verity.CashFlow.Application.csproj", "{457D9C7E-09EF-4082-AD29-02630B2872CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verity.CashFlow.Contracts", "src\Verity.CashFlow.Contracts\Verity.CashFlow.Contracts.csproj", "{200ECAE1-5510-4873-8D18-946AA06004E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verity.CashFlow.Contracts", "src\Verity.CashFlow.Contracts\Verity.CashFlow.Contracts.csproj", "{200ECAE1-5510-4873-8D18-946AA06004E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verity.CashFlow.Domain", "src\Verity.CashFlow.Domain\Verity.CashFlow.Domain.csproj", "{A7B3D485-7F0A-4413-A9C1-C45CD9B5B76A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verity.CashFlow.Domain", "src\Verity.CashFlow.Domain\Verity.CashFlow.Domain.csproj", "{A7B3D485-7F0A-4413-A9C1-C45CD9B5B76A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verity.CashFlow.Infrastructure", "src\Verity.CashFlow.Infrastructure\Verity.CashFlow.Infrastructure.csproj", "{17854AD6-992B-49D3-BD8F-739F0A9386CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verity.CashFlow.Infrastructure", "src\Verity.CashFlow.Infrastructure\Verity.CashFlow.Infrastructure.csproj", "{17854AD6-992B-49D3-BD8F-739F0A9386CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6A327A8E-2112-4916-9D5D-B94EF8C2E570}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D092D991-63C9-444A-BA85-4D9B756955FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verity.CashFlow.Application.Tests", "tests\Verity.CashFlow.Application.Tests\Verity.CashFlow.Application.Tests.csproj", "{40200981-9160-4F32-A0CD-5A488D1B8D00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AD7F6355-FD07-43BB-BB9C-B7295F82727D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +45,20 @@ Global
 		{17854AD6-992B-49D3-BD8F-739F0A9386CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17854AD6-992B-49D3-BD8F-739F0A9386CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17854AD6-992B-49D3-BD8F-739F0A9386CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40200981-9160-4F32-A0CD-5A488D1B8D00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40200981-9160-4F32-A0CD-5A488D1B8D00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40200981-9160-4F32-A0CD-5A488D1B8D00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40200981-9160-4F32-A0CD-5A488D1B8D00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD7F6355-FD07-43BB-BB9C-B7295F82727D} = {6A327A8E-2112-4916-9D5D-B94EF8C2E570}
+		{457D9C7E-09EF-4082-AD29-02630B2872CE} = {6A327A8E-2112-4916-9D5D-B94EF8C2E570}
+		{200ECAE1-5510-4873-8D18-946AA06004E3} = {6A327A8E-2112-4916-9D5D-B94EF8C2E570}
+		{A7B3D485-7F0A-4413-A9C1-C45CD9B5B76A} = {6A327A8E-2112-4916-9D5D-B94EF8C2E570}
+		{17854AD6-992B-49D3-BD8F-739F0A9386CB} = {6A327A8E-2112-4916-9D5D-B94EF8C2E570}
+		{40200981-9160-4F32-A0CD-5A488D1B8D00} = {D092D991-63C9-444A-BA85-4D9B756955FB}
 	EndGlobalSection
 EndGlobal

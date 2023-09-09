@@ -25,9 +25,6 @@ builder
         options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
     });
 
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 if (!app.Environment.IsProduction())

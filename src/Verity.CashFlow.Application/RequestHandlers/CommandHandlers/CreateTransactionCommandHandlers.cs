@@ -1,6 +1,6 @@
 ﻿namespace Verity.CashFlow.Application.RequestHandlers.CommandHandlers;
 
-internal class CreateTransactionCommandHandlers : BaseCommandHandlers<CreateTransactionCommand, Result>
+public class CreateTransactionCommandHandlers : BaseCommandHandlers<CreateTransactionCommand, Result>
 {
     private readonly ITransactionRepository _transactionRepository;
 
