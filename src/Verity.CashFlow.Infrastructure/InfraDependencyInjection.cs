@@ -1,4 +1,8 @@
-﻿namespace Verity.CashFlow.Infrastructure;
+﻿using System.Reflection;
+using Mapster;
+using MapsterMapper;
+
+namespace Verity.CashFlow.Infrastructure;
 
 public static class InfraDependencyInjection
 {
@@ -22,11 +26,22 @@ public static class InfraDependencyInjection
         return serviceCollection;
     }
 
+    public static IServiceCollection AddMappings(this IServiceCollection serviceCollection)
+    {
+        var config = TypeAdapterConfig.GlobalSettings;
+        config.Scan(Assembly.GetExecutingAssembly());
+
+        serviceCollection.AddSingleton(config);
+        serviceCollection.AddScoped<IMapper, ServiceMapper>();
+        return serviceCollection;
+    }
+
     public static IServiceCollection AddInfra(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
         serviceCollection
             .AddDatabase(configuration)
-            .AddRepositories();
+            .AddRepositories()
+            .AddMappings();
 
         return serviceCollection;
     }

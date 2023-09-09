@@ -12,7 +12,7 @@ public class CreateTransactionCommandHandlerTests
     }
 
     [Fact]
-    public async Task Given_When_ThenAsync()
+    public async Task GivenCreateTransactionCommand_WhenCallHandle_ThenTransactionShouldBeCreated()
     {
         // Arrange
         var command = new CreateTransactionCommand(
@@ -20,7 +20,7 @@ public class CreateTransactionCommandHandlerTests
             1000,
             "Selling 100 pepeers",
             TransactionType.Income,
-            TransactionStatus.Received,
+            TransactionStatus.Payed,
             null
         );
 

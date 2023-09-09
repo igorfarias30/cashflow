@@ -59,7 +59,7 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3dee5685-34a5-4c23-8a67-ba0aff22dcf3"),
+                            Id = new Guid("20f2ea13-ebbf-47a9-b2fe-a70da62ce80b"),
                             AmountInCents = 1500L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
@@ -69,7 +69,7 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e354c9b9-8746-40f8-b527-c75b75e062da"),
+                            Id = new Guid("f6fd5f54-1b01-4b42-8169-82e13dc606c0"),
                             AmountInCents = 5000L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
@@ -79,13 +79,53 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7413e79e-db3a-4e6c-93ee-ed4d62c490b3"),
+                            Id = new Guid("5c9310b6-55cf-4725-9c43-3c44aff14a0b"),
                             AmountInCents = 3000L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "20 salt",
                             Status = 0,
                             Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("ad7a238c-1f2f-4a7a-99de-d02db448c39a"),
+                            AmountInCents = 2515L,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateOfTransaction = new DateOnly(2023, 9, 9),
+                            Description = "1 Kg argentine apple",
+                            Status = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("4cf56e7a-9319-472c-94f4-4593843b4e41"),
+                            AmountInCents = 65750L,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateOfTransaction = new DateOnly(2023, 9, 9),
+                            Description = "15 Kg picanha",
+                            Status = 0,
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("2bb7425d-6dbd-46f0-a684-c4af23b389d7"),
+                            AmountInCents = 20000L,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateOfTransaction = new DateOnly(2023, 9, 9),
+                            Description = "Energy Bill",
+                            Status = 0,
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("ef050209-416a-4a1f-bb0a-4f8549f7d0b6"),
+                            AmountInCents = 10000L,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateOfTransaction = new DateOnly(2023, 9, 9),
+                            Description = "Water Bill",
+                            Status = 0,
+                            Type = 1
                         });
                 });
 #pragma warning restore 612, 618

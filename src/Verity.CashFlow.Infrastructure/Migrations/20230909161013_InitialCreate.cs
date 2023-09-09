@@ -33,9 +33,13 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                 columns: new[] { "Id", "AmountInCents", "Comment", "CreatedAt", "DateOfTransaction", "Description", "Status", "Type", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("3dee5685-34a5-4c23-8a67-ba0aff22dcf3"), 1500L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "2 milks", 0, 0, null },
-                    { new Guid("7413e79e-db3a-4e6c-93ee-ed4d62c490b3"), 3000L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "20 salt", 0, 0, null },
-                    { new Guid("e354c9b9-8746-40f8-b527-c75b75e062da"), 5000L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "10 rice", 0, 0, null }
+                    { new Guid("20f2ea13-ebbf-47a9-b2fe-a70da62ce80b"), 1500L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "2 milks", 0, 0, null },
+                    { new Guid("2bb7425d-6dbd-46f0-a684-c4af23b389d7"), 20000L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "Energy Bill", 0, 1, null },
+                    { new Guid("4cf56e7a-9319-472c-94f4-4593843b4e41"), 65750L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "15 Kg picanha", 0, 0, null },
+                    { new Guid("5c9310b6-55cf-4725-9c43-3c44aff14a0b"), 3000L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "20 salt", 0, 0, null },
+                    { new Guid("ad7a238c-1f2f-4a7a-99de-d02db448c39a"), 2515L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "1 Kg argentine apple", 0, 0, null },
+                    { new Guid("ef050209-416a-4a1f-bb0a-4f8549f7d0b6"), 10000L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "Water Bill", 0, 1, null },
+                    { new Guid("f6fd5f54-1b01-4b42-8169-82e13dc606c0"), 5000L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "10 rice", 0, 0, null }
                 });
         }
 

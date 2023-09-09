@@ -1,0 +1,10 @@
+﻿namespace Verity.CashFlow.Contracts.ViewModels;
+
+public record struct BalanceDetailsViewModel
+{
+    public long IncomeInCents { get; init; }
+    public long OutcomeInCents { get; init; }
+    public long BalanceInCents { get; init; }
+    public DateOnly DateOfCashFlow { get; init; }
+    public List<TransactionViewModel> Transactions { get; init; }
+}
