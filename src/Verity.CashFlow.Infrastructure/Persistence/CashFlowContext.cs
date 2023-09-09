@@ -1,4 +1,4 @@
-﻿using System.Transactions;
+﻿using Verity.CashFlow.Domain.Entities;
 
 namespace Verity.CashFlow.Infrastructure.Persistence;
 

@@ -1,11 +1,17 @@
 using Verity.CashFlow.Infrastructure;
 using Verity.CashFlow.Application;
-using Microsoft.Extensions.DependencyInjection;
 using Verity.CashFlow.Contracts.Convertes;
+using Verity.CashFlow.Infrastructure.Persistence;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
+
+builder.Host.UseSerilog((hostContext, services, configuration) =>
+{
+    configuration.WriteTo.Console();
+});
 
 builder
     .Services
@@ -28,6 +34,18 @@ if (!app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI(config => config.SwaggerEndpoint("/swagger/v1/swagger.json", "Verity.CashFlow Api"));
+}
+
+try
+{
+    await using var serviceScope = app.Services.CreateAsyncScope();
+    await using var dbContext = serviceScope.ServiceProvider.GetRequiredService<CashFlowContext>();
+    await dbContext.Database.EnsureDeletedAsync();
+    await dbContext.Database.EnsureCreatedAsync();
+}
+catch (Exception ex)
+{
+    Log.Error(ex.Message);
 }
 
 app.UseHttpsRedirection();

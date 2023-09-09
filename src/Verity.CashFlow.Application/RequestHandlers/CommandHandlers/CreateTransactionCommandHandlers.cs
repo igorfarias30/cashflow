@@ -1,9 +1,4 @@
-﻿using OperationResult;
-using Verity.CashFlow.Application.Repositories;
-using Verity.CashFlow.Contracts.Requests.Commands;
-using Verity.CashFlow.Domain.Entities;
-
-namespace Verity.CashFlow.Application.RequestHandlers.CommandHandlers;
+﻿namespace Verity.CashFlow.Application.RequestHandlers.CommandHandlers;
 
 internal class CreateTransactionCommandHandlers : BaseCommandHandlers<CreateTransactionCommand, Result>
 {
@@ -25,9 +20,9 @@ internal class CreateTransactionCommandHandlers : BaseCommandHandlers<CreateTran
                 request.Comment
             );
 
-        //var id = _transactionRepository.Insert(transaction);
+        var id = _transactionRepository.Insert(transaction);
 
-        //await _transactionRepository.SaveChangesAsync();
+        await _transactionRepository.SaveChangesAsync();
 
         return Result.Success();
     }
