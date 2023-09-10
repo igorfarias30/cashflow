@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Verity.CashFlow.Contracts.DTOs;
+﻿using Verity.CashFlow.Contracts.DTOs;
+using Verity.CashFlow.Domain.Entities;
 
 namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
 
@@ -11,32 +11,34 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
 
     public async Task<BalanceDetailsDto?> GetBalanceDetailsByDate(DateOnly date)
     {
-        var cash = (
-            from cashes in Context.Cashes
-            join transactions in Context.Transactions on cashes.Id equals transactions.CashId
-            where cashes.DateOfCash == date
-            select cashes).First();
+        //var cash = (
+        //    from cashes in Context.Cashes
+        //    join transactions in Context.Transactions on cashes.Id.ToString() equals transactions.CashId.ToString()
+        //    where cashes.DateOfCash == date
+        //    select cashes
+        //    );
 
+        //var cash = Context
+        //        .Cashes.ToList();
 
-        //var cash = await Context
-        //        .Cashes
-        //        .Include(cash => cash.Transactions)
-        //        .AsNoTracking()
-        //        .Where(cash => cash.DateOfCash == date)
-        //        .FirstAsync();
-                
-                //.Include(transaction => transaction.Transactions)
-                //.AsNoTracking()
-                //.Where(cash => cash.DateOfCash == date)
-                //.ToListAsync();
+        var cash = Context
+                .Cashes
+                .Include(cash => cash.Transactions)
+                .AsNoTracking()
+                .Where(cash => cash.DateOfCash == date);
 
-        var incomeInCents = cash!
+        //.Include(transaction => transaction.Transactions)
+        //.AsNoTracking()
+        //.Where(cash => cash.DateOfCash == date)
+        //.ToListAsync();
+
+        var incomeInCents = cash!.First()
             .Transactions
             .Where(x => x.Type == TransactionType.Income)
             .Select(x => x.AmountInCents)
             .Sum();
 
-        var outcomeInCents = cash!
+        var outcomeInCents = cash!.First()
             .Transactions
             .Where(x => x.Type == TransactionType.Outcome)
             .Select(x => x.AmountInCents)
