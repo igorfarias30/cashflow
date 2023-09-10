@@ -18,6 +18,9 @@ public class Transaction : Entity
         Comment = comment;
     }
 
+    public Guid CashId { get; set; }
+    public Cash Cash { get; set; }
+
     public DateOnly DateOfTransaction { get; private set; }
     public long AmountInCents { get; private set; }
     public string Description { get; private set; } = null!;

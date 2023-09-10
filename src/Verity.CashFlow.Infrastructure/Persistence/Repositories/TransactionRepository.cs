@@ -1,6 +1,4 @@
-﻿using Verity.CashFlow.Contracts.DTOs;
-
-namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
+﻿namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
 
 public class TransactionRepository : Repository<Transaction>, ITransactionRepository
 {
@@ -8,30 +6,38 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
     {
     }
 
-    public BalanceDetailsDto GetBalanceDetailsByDate(DateOnly date)
+    public async Task<Cash?> GetBalanceDetailsByDate(DateOnly date)
     {
-        var transactions = CurrentSet
+        var cash = await Context
+                .Cashes
+                .Include(transaction => transaction.Transactions)
                 .AsNoTracking()
-                .Where(transaction => transaction.DateOfTransaction == date);
+                .FirstOrDefaultAsync(cash => cash.DateOfCash == date);
 
-        var incomeInCents = transactions
+        //cash;
+        //return cash.Include(transaction => transaction.Transactions).FirstOrDefault();
+
+        var incomeInCents = cash!
+            .Transactions
             .Where(x => x.Type == TransactionType.Income)
             .Select(x => x.AmountInCents)
             .Sum();
 
-        var outcomeInCents = transactions
+        var outcomeInCents = cash!
+            .Transactions
             .Where(x => x.Type == TransactionType.Outcome)
             .Select(x => x.AmountInCents)
             .Sum();
 
         var balance = incomeInCents - outcomeInCents;
 
-        return new BalanceDetailsDto
-        {
-            IncomeInCents = incomeInCents,
-            OutcomeInCents = outcomeInCents,
-            BalanceInCents = balance,
-            DateOfCashFlow = date
-        };
+        return cash;
+        //return new BalanceDetailsDto
+        //{
+        //    IncomeInCents = incomeInCents,
+        //    OutcomeInCents = outcomeInCents,
+        //    BalanceInCents = balance,
+        //    DateOfCashFlow = date
+        //};
     }
 }
