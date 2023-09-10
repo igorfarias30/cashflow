@@ -14,9 +14,9 @@ public class GetBalanceDetailsQueryHandler : BaseQueryHandler<GetBalanceDetailsQ
         _mapper = mapper;
     }
 
-    public override Task<Result<BalanceDetailsViewModel>> Handle(GetBalanceDetailsQuery request, CancellationToken cancellationToken)
+    public override async Task<Result<BalanceDetailsViewModel>> Handle(GetBalanceDetailsQuery request, CancellationToken cancellationToken)
     {
-        var balance = _transactionRepository.GetBalanceDetailsByDate(request.DateOfCash);
+        var balance = await _transactionRepository.GetBalanceDetailsByDate(request.DateOfCash);
         return Result.Success(_mapper.Map<BalanceDetailsViewModel>(balance));
     }
 }

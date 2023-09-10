@@ -4,5 +4,5 @@ namespace Verity.CashFlow.Application.Repositories;
 
 public interface ITransactionRepository : IRepository<Transaction>
 {
-    Task<Cash?> GetBalanceDetailsByDate(DateOnly date);
+    Task<BalanceDetailsDto?> GetBalanceDetailsByDate(DateOnly date);
 }

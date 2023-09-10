@@ -31,7 +31,7 @@ public class Cash : Entity
     public long? ClosedBalanceInCents { get; private set; }
 
     public static Cash Create(DateOnly dateOfCash, long startBalanceInCents, long? closedBalanceInCents)
-        => new(Guid.NewGuid(), dateOfCash, startBalanceInCents, closedBalanceInCents);
+        => new(long, dateOfCash, startBalanceInCents, closedBalanceInCents);
 
     public void CloseCash()
         => IsClosed = true;

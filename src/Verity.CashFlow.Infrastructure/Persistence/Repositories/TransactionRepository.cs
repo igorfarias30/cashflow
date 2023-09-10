@@ -1,4 +1,7 @@
-﻿namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Verity.CashFlow.Contracts.DTOs;
+
+namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
 
 public class TransactionRepository : Repository<Transaction>, ITransactionRepository
 {
@@ -6,16 +9,26 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
     {
     }
 
-    public async Task<Cash?> GetBalanceDetailsByDate(DateOnly date)
+    public async Task<BalanceDetailsDto?> GetBalanceDetailsByDate(DateOnly date)
     {
-        var cash = await Context
-                .Cashes
-                .Include(transaction => transaction.Transactions)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(cash => cash.DateOfCash == date);
+        var cash = (
+            from cashes in Context.Cashes
+            join transactions in Context.Transactions on cashes.Id equals transactions.CashId
+            where cashes.DateOfCash == date
+            select cashes).First();
 
-        //cash;
-        //return cash.Include(transaction => transaction.Transactions).FirstOrDefault();
+
+        //var cash = await Context
+        //        .Cashes
+        //        .Include(cash => cash.Transactions)
+        //        .AsNoTracking()
+        //        .Where(cash => cash.DateOfCash == date)
+        //        .FirstAsync();
+                
+                //.Include(transaction => transaction.Transactions)
+                //.AsNoTracking()
+                //.Where(cash => cash.DateOfCash == date)
+                //.ToListAsync();
 
         var incomeInCents = cash!
             .Transactions
@@ -31,13 +44,12 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
 
         var balance = incomeInCents - outcomeInCents;
 
-        return cash;
-        //return new BalanceDetailsDto
-        //{
-        //    IncomeInCents = incomeInCents,
-        //    OutcomeInCents = outcomeInCents,
-        //    BalanceInCents = balance,
-        //    DateOfCashFlow = date
-        //};
+        return new BalanceDetailsDto
+        {
+            IncomeInCents = incomeInCents,
+            OutcomeInCents = outcomeInCents,
+            BalanceInCents = balance,
+            DateOfCashFlow = date
+        };
     }
 }

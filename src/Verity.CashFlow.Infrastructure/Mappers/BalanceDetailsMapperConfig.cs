@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Verity.CashFlow.Contracts.DTOs;
 using Verity.CashFlow.Contracts.ViewModels;
 
 namespace Verity.CashFlow.Infrastructure.Mappers;
@@ -22,7 +23,12 @@ internal class BalanceDetailsMapperConfig : IRegister
         config.NewConfig<Cash, BalanceDetailsViewModel>()
             .Map(dest => dest.IncomeInCents, _incomeRetrieve)
             .Map(dest => dest.OutcomeInCents, _outcomeRetrieve)
-            //.Map(dest => dest.BalanceInCents, _incomeRetrieve - _outcomeRetrieve)
+            .Map(dest => dest.Transactions, src => src.Transactions);
+
+        config.NewConfig<BalanceDetailsDto, BalanceDetailsViewModel>()
+            .Map(dest => dest.IncomeInCents, src => src.IncomeInCents)
+            .Map(dest => dest.OutcomeInCents, src => src.OutcomeInCents)
+            .Map(dest => dest.BalanceInCents, src => src.BalanceInCents)
             .Map(dest => dest.Transactions, src => src.Transactions);
     }
 }
