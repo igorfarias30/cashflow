@@ -14,10 +14,22 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 value => Guid.NewGuid()
             );
 
+        builder
+          .HasOne(transaction => transaction.Cash)
+          .WithMany(cash => cash.Transactions)
+          .HasForeignKey(transaction => transaction.CashId)
+          .OnDelete(DeleteBehavior.Cascade);
+
+        builder
+            .Metadata
+            .FindNavigation(nameof(Transaction.Cash))!
+            .SetPropertyAccessMode(PropertyAccessMode.Field);
+
         builder.HasData(
                 new
                 {
                     Id = Guid.NewGuid(),
+                    CashId = InitialData.CashId,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 1500L,
@@ -28,6 +40,7 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 new
                 {
                     Id = Guid.NewGuid(),
+                    CashId = InitialData.CashId,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 5000L,
@@ -38,6 +51,7 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 new
                 {
                     Id = Guid.NewGuid(),
+                    CashId = InitialData.CashId,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 3000L,
@@ -48,6 +62,7 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 new
                 {
                     Id = Guid.NewGuid(),
+                    CashId = InitialData.CashId,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 2515L,
@@ -58,6 +73,7 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 new
                 {
                     Id = Guid.NewGuid(),
+                    CashId = InitialData.CashId,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 65750L,
@@ -68,6 +84,7 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 new
                 {
                     Id = Guid.NewGuid(),
+                    CashId = InitialData.CashId,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 20000L,
@@ -78,6 +95,7 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 new
                 {
                     Id = Guid.NewGuid(),
+                    CashId = InitialData.CashId,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 10000L,

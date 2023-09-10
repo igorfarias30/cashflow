@@ -1,5 +1,4 @@
-﻿using Mapster;
-using MapsterMapper;
+﻿using AutoMapper;
 
 namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
 

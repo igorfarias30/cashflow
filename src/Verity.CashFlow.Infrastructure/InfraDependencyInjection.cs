@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using Mapster;
-using MapsterMapper;
+﻿using Verity.CashFlow.Infrastructure.Mappers;
 
 namespace Verity.CashFlow.Infrastructure;
 
@@ -28,11 +26,7 @@ public static class InfraDependencyInjection
 
     public static IServiceCollection AddMappings(this IServiceCollection serviceCollection)
     {
-        var config = TypeAdapterConfig.GlobalSettings;
-        config.Scan(Assembly.GetExecutingAssembly());
-
-        serviceCollection.AddSingleton(config);
-        serviceCollection.AddScoped<IMapper, ServiceMapper>();
+        serviceCollection.AddAutoMapper(typeof(BalanceDetailsMapperProfile));
         return serviceCollection;
     }
 

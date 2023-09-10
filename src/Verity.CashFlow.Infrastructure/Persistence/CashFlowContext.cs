@@ -8,6 +8,7 @@ public class CashFlowContext : DbContext
     {
     }
 
+    public DbSet<Cash> Cashes { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,13 +1,20 @@
-﻿using Mapster;
+﻿using AutoMapper;
+using Verity.CashFlow.Contracts.DTOs;
 using Verity.CashFlow.Contracts.ViewModels;
 
 namespace Verity.CashFlow.Infrastructure.Mappers;
 
-internal class TransactionMapperConfig : IRegister
+internal class TransactionMapperConfig : Profile
 {
-    public void Register(TypeAdapterConfig config)
+    public TransactionMapperConfig()
     {
-        config.NewConfig<Transaction, TransactionViewModel>()
-            .Map(dest => dest.Id, src => src.Id.ToString());
+        CreateMap<Transaction, TransactionViewModel>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()));
+
+        CreateMap<Transaction, TransactionDetailsDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()));
+
+        CreateMap<TransactionDetailsDto, TransactionViewModel>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()));
     }
 }
