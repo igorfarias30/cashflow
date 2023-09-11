@@ -27,10 +27,9 @@ Após a inicialização do banco de dados, a aplicação pode ser iniciada:
 
 ### Balance
 
-Reponsavel por dar o valor consolidado do caixa a partir de uma data. 
+Reponsável por dar o valor consolidado do caixa a partir de uma data. 
 
 Exemplo de query filter:
-
 ![Alt text](images/date_filter.png)
 
 As informações retornadas são:
@@ -43,4 +42,5 @@ As informações retornadas são:
 
 ### Transaction
 
-Reponsavel por informar, criar, atualizar e deletar os detalhes de movimentações do caixa do dia.
+Reponsável por informar, criar, atualizar e deletar os detalhes de movimentações do caixa do dia.
+

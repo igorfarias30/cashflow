@@ -1,6 +1,4 @@
-﻿using Verity.CashFlow.Application.Services.Exporter;
-
-namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
+﻿namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
 
 public class GetBalanceDetailsInCsvQueryHandler : BaseQueryHandler<GetBalanceDetailsInCsvQuery, Result<FileViewModel>>
 {
@@ -22,8 +20,7 @@ public class GetBalanceDetailsInCsvQueryHandler : BaseQueryHandler<GetBalanceDet
             return exception!;
 
         var transactions = _mapper
-            .From(_transactionRepository.GetAllTransactionsByDate(request.Date))
-            .ProjectToType<TransactionViewModel>();
+            .Map<IEnumerable<TransactionViewModel>>(_transactionRepository.GetAllTransactionsByDate(request.Date));
 
         var fileName = $"cash-flow-transactions_{request.Date}.csv";
         var fileStream = strategy!.Export(transactions);

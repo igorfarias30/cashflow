@@ -1,12 +1,12 @@
 ﻿namespace Verity.CashFlow.Application.RequestHandlers.CommandHandlers;
 
-public class CreateTransactionCommandHandlers : BaseCommandHandlers<CreateTransactionCommand, Result<TransactionViewModel>>
+public class CreateTransactionCommandHandler : BaseCommandHandlers<CreateTransactionCommand, Result<TransactionViewModel>>
 {
     private readonly ITransactionRepository _transactionRepository;
     private readonly IRepository<Cash> _cashRepository;
     private readonly IMapper _mapper;
 
-    public CreateTransactionCommandHandlers(ITransactionRepository transactionRepository, IMapper mapper, IRepository<Cash> cashRepository)
+    public CreateTransactionCommandHandler(ITransactionRepository transactionRepository, IMapper mapper, IRepository<Cash> cashRepository)
     {
         _transactionRepository = transactionRepository;
         _mapper = mapper;
@@ -15,6 +15,9 @@ public class CreateTransactionCommandHandlers : BaseCommandHandlers<CreateTransa
 
     public override async Task<Result<TransactionViewModel>> Handle(CreateTransactionCommand request, CancellationToken cancellationToken)
     {
+        if (request.TransactionDate > DateOnly.FromDateTime(DateTime.Now))
+            return Result.Error<TransactionViewModel>(new Exception("Can not create a transaction on the future"));
+
         var cash = _cashRepository.Get(cash => cash.DateOfCash == request.TransactionDate, asNoTracking: true);
 
         if (cash is null)

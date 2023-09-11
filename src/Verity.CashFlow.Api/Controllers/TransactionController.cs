@@ -27,11 +27,4 @@ public class TransactionController : CashFlowBaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(long id)
         => await SendRequest(new DeleteTransactionCommand(id));
-
-    [HttpDelete("test")]
-    public async Task<IActionResult> Test()
-    {
-        await _cashFlowService.CloseCash();
-        return Ok();
-    }
 }

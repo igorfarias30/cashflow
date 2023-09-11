@@ -3,7 +3,7 @@
 namespace Verity.CashFlow.Contracts.ViewModels;
 
 public record struct TransactionViewModel(
-    string Id,
+    long Id,
     string Description,
     long AmountInCents,
     TransactionType Type,

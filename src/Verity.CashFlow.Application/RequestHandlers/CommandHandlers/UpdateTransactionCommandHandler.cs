@@ -1,6 +1,4 @@
-﻿using MapsterMapper;
-
-namespace Verity.CashFlow.Application.RequestHandlers.CommandHandlers;
+﻿namespace Verity.CashFlow.Application.RequestHandlers.CommandHandlers;
 
 internal class UpdateTransactionCommandHandler : BaseCommandHandlers<UpdateTransactionCommand, Result<TransactionViewModel>>
 {

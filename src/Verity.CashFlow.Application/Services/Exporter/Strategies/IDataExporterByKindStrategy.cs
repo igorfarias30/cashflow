@@ -1,6 +1,4 @@
-﻿using Verity.CashFlow.Application.Services.Exporter;
-
-namespace Verity.CashFlow.Application.Services.Strategies;
+﻿namespace Verity.CashFlow.Application.Services.Strategies;
 
 public interface IDataExporterByKindStrategy
 {
