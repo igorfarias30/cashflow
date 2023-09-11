@@ -7,12 +7,7 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
         builder.ToTable("Transactions");
 
         builder.HasKey(transaction => transaction.Id);
-        builder.Property(transaction => transaction.Id)
-            .ValueGeneratedNever()
-            .HasConversion(
-                id => id,
-                value => Guid.NewGuid()
-            );
+        builder.Property(transaction => transaction.Id);
 
         builder
           .HasOne(transaction => transaction.Cash)
@@ -28,8 +23,8 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
         builder.HasData(
                 new
                 {
-                    Id = Guid.NewGuid(),
-                    CashId = InitialData.CashId,
+                    Id = 1L,
+                    CashId = 1L,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 1500L,
@@ -39,8 +34,8 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 },
                 new
                 {
-                    Id = Guid.NewGuid(),
-                    CashId = InitialData.CashId,
+                    Id = 2L,
+                    CashId = 1L,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 5000L,
@@ -50,8 +45,8 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 },
                 new
                 {
-                    Id = Guid.NewGuid(),
-                    CashId = InitialData.CashId,
+                    Id = 3L,
+                    CashId = 1L,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 3000L,
@@ -61,8 +56,8 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 },
                 new
                 {
-                    Id = Guid.NewGuid(),
-                    CashId = InitialData.CashId,
+                    Id = 4L,
+                    CashId = 1L,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 2515L,
@@ -72,8 +67,8 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 },
                 new
                 {
-                    Id = Guid.NewGuid(),
-                    CashId = InitialData.CashId,
+                    Id = 5L,
+                    CashId = 1L,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 65750L,
@@ -83,8 +78,8 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 },
                 new
                 {
-                    Id = Guid.NewGuid(),
-                    CashId = InitialData.CashId,
+                    Id = 6L,
+                    CashId = 1L,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 20000L,
@@ -94,8 +89,8 @@ internal class TransactionEntityTypeConfiguration : IEntityTypeConfiguration<Tra
                 },
                 new
                 {
-                    Id = Guid.NewGuid(),
-                    CashId = InitialData.CashId,
+                    Id = 7L,
+                    CashId = 1L,
                     CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                     DateOfTransaction = new DateOnly(2023, 9, 9),
                     AmountInCents = 10000L,

@@ -1,8 +1,8 @@
 using Verity.CashFlow.Infrastructure;
 using Verity.CashFlow.Application;
-using Verity.CashFlow.Contracts.Convertes;
 using Verity.CashFlow.Infrastructure.Persistence;
 using Serilog;
+using Verity.CashFlow.Infrastructure.Convertes;
 
 var builder = WebApplication.CreateBuilder(args);
 

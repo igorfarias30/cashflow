@@ -12,7 +12,7 @@ using Verity.CashFlow.Infrastructure.Persistence;
 namespace Verity.CashFlow.Infrastructure.Migrations
 {
     [DbContext(typeof(CashFlowContext))]
-    [Migration("20230910155318_InitialCreate")]
+    [Migration("20230911020050_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,11 @@ namespace Verity.CashFlow.Infrastructure.Migrations
 
             modelBuilder.Entity("Verity.CashFlow.Domain.Entities.Cash", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long?>("ClosedBalanceInCents")
                         .HasColumnType("bigint");
@@ -54,7 +57,7 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            Id = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfCash = new DateOnly(2023, 9, 9),
                             IsClosed = false,
@@ -64,14 +67,17 @@ namespace Verity.CashFlow.Infrastructure.Migrations
 
             modelBuilder.Entity("Verity.CashFlow.Domain.Entities.Transaction", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("AmountInCents")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid>("CashId")
-                        .HasColumnType("uuid");
+                    b.Property<long>("CashId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Comment")
                         .HasColumnType("text");
@@ -104,9 +110,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("45301e31-bed5-4695-87b0-286c2b4b495b"),
+                            Id = 1L,
                             AmountInCents = 1500L,
-                            CashId = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            CashId = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "2 milks",
@@ -115,9 +121,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("025b9bc8-5cce-4a22-98f2-ce6727a0f482"),
+                            Id = 2L,
                             AmountInCents = 5000L,
-                            CashId = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            CashId = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "10 rice",
@@ -126,9 +132,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("732d6158-f1c7-4c12-adcb-9f3fac617fa2"),
+                            Id = 3L,
                             AmountInCents = 3000L,
-                            CashId = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            CashId = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "20 salt",
@@ -137,9 +143,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f22c362d-6a21-440a-9cb0-5a1aa63a106e"),
+                            Id = 4L,
                             AmountInCents = 2515L,
-                            CashId = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            CashId = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "1 Kg argentine apple",
@@ -148,9 +154,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e564b9e8-a62f-42eb-9dfd-c6f25e5e5816"),
+                            Id = 5L,
                             AmountInCents = 65750L,
-                            CashId = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            CashId = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "15 Kg picanha",
@@ -159,9 +165,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("988a5a5a-06e6-4cf7-b43e-571beb55ed13"),
+                            Id = 6L,
                             AmountInCents = 20000L,
-                            CashId = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            CashId = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "Energy Bill",
@@ -170,9 +176,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("936203f8-74dd-42cc-841c-c8ec340e16d9"),
+                            Id = 7L,
                             AmountInCents = 10000L,
-                            CashId = new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"),
+                            CashId = 1L,
                             CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DateOfTransaction = new DateOnly(2023, 9, 9),
                             Description = "Water Bill",

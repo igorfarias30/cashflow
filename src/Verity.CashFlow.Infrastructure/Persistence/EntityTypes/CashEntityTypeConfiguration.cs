@@ -7,12 +7,7 @@ internal class CashEntityTypeConfiguration : IEntityTypeConfiguration<Cash>
         builder.ToTable("Cashes");
 
         builder.HasKey(cash => cash.Id);
-        builder.Property(cash => cash.Id)
-            .ValueGeneratedNever()
-            .HasConversion(
-                id => id,
-                value => Guid.NewGuid()
-            );
+        builder.Property(cash => cash.Id);
 
         builder
            .HasMany(cash => cash.Transactions)
@@ -37,7 +32,7 @@ internal class CashEntityTypeConfiguration : IEntityTypeConfiguration<Cash>
         builder.HasData(
             new
             {
-                Id = InitialData.CashId,
+                Id = 1L,
                 CreatedAt = new DateTimeOffset(2023, 9, 9, 0, 0, 0, 0, new TimeSpan(0, 0, 0, 0, 0)),
                 DateOfCash = new DateOnly(2023, 9, 9),
                 StartBalanceInCents = 1000000L,

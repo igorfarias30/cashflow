@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -13,7 +14,8 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                 name: "Cashes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     DateOfCash = table.Column<DateOnly>(type: "date", nullable: false),
                     IsClosed = table.Column<bool>(type: "boolean", nullable: false),
                     StartBalanceInCents = table.Column<long>(type: "bigint", nullable: false),
@@ -30,8 +32,9 @@ namespace Verity.CashFlow.Infrastructure.Migrations
                 name: "Transactions",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CashId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CashId = table.Column<long>(type: "bigint", nullable: false),
                     DateOfTransaction = table.Column<DateOnly>(type: "date", nullable: false),
                     AmountInCents = table.Column<long>(type: "bigint", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
@@ -55,20 +58,20 @@ namespace Verity.CashFlow.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Cashes",
                 columns: new[] { "Id", "ClosedBalanceInCents", "CreatedAt", "DateOfCash", "IsClosed", "StartBalanceInCents", "UpdatedAt" },
-                values: new object[] { new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), false, 1000000L, null });
+                values: new object[] { 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), false, 1000000L, null });
 
             migrationBuilder.InsertData(
                 table: "Transactions",
                 columns: new[] { "Id", "AmountInCents", "CashId", "Comment", "CreatedAt", "DateOfTransaction", "Description", "Status", "Type", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("025b9bc8-5cce-4a22-98f2-ce6727a0f482"), 5000L, new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "10 rice", 0, 0, null },
-                    { new Guid("45301e31-bed5-4695-87b0-286c2b4b495b"), 1500L, new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "2 milks", 0, 0, null },
-                    { new Guid("732d6158-f1c7-4c12-adcb-9f3fac617fa2"), 3000L, new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "20 salt", 0, 0, null },
-                    { new Guid("936203f8-74dd-42cc-841c-c8ec340e16d9"), 10000L, new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "Water Bill", 0, 1, null },
-                    { new Guid("988a5a5a-06e6-4cf7-b43e-571beb55ed13"), 20000L, new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "Energy Bill", 0, 1, null },
-                    { new Guid("e564b9e8-a62f-42eb-9dfd-c6f25e5e5816"), 65750L, new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "15 Kg picanha", 0, 0, null },
-                    { new Guid("f22c362d-6a21-440a-9cb0-5a1aa63a106e"), 2515L, new Guid("35b5b1cc-56b5-4e61-97d5-12ea4d0f72e5"), null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "1 Kg argentine apple", 0, 0, null }
+                    { 1L, 1500L, 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "2 milks", 0, 0, null },
+                    { 2L, 5000L, 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "10 rice", 0, 0, null },
+                    { 3L, 3000L, 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "20 salt", 0, 0, null },
+                    { 4L, 2515L, 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "1 Kg argentine apple", 0, 0, null },
+                    { 5L, 65750L, 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "15 Kg picanha", 0, 0, null },
+                    { 6L, 20000L, 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "Energy Bill", 0, 1, null },
+                    { 7L, 10000L, 1L, null, new DateTimeOffset(new DateTime(2023, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), new DateOnly(2023, 9, 9), "Water Bill", 0, 1, null }
                 });
 
             migrationBuilder.CreateIndex(

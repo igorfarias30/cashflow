@@ -1,17 +1,11 @@
 ﻿namespace Verity.CashFlow.Domain.Primitives;
 
-public abstract class Entity : IEquatable<Entity>
+public class Entity
 {
-    protected Entity()
-    {
-    }
+    public long Id { get; protected set; }
 
-    protected Entity(Guid id) => Id = id;
-
-    public Guid Id { get; private set; }
-
-    public DateTimeOffset CreatedAt { get; private set; } = DateTimeOffset.UtcNow;
-    public DateTimeOffset? UpdatedAt { get; private set; }
+    public DateTimeOffset CreatedAt { get; protected set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset? UpdatedAt { get; protected set; }
 
     public override bool Equals(object? obj)
         => obj is Entity entity && Id.Equals(entity.Id);
@@ -19,11 +13,8 @@ public abstract class Entity : IEquatable<Entity>
     public bool Equals(Entity? other)
         => Equals((object?)other);
 
-    public static bool operator ==(Entity left, Entity right)
-        => Equals(left, right);
-
-    public static bool operator !=(Entity left, Entity right)
-        => !Equals(left, right);
+    public static implicit operator bool(Entity entity)
+        => entity != null;
 
     public override int GetHashCode()
         => Id.GetHashCode();

@@ -15,7 +15,7 @@ internal class UpdateTransactionCommandHandler : BaseCommandHandlers<UpdateTrans
 
     public override Task<Result<TransactionViewModel>> Handle(UpdateTransactionCommand request, CancellationToken cancellationToken)
     {
-        var oldTransaction = _transactionRepository.GetById(Guid.Parse(request.Id), asNoTracking: true);
+        var oldTransaction = _transactionRepository.GetById(request.Id, asNoTracking: true);
 
         if (oldTransaction is null)
             return Result.Error<TransactionViewModel>(new Exception($"transaction {request.Id} not found"));

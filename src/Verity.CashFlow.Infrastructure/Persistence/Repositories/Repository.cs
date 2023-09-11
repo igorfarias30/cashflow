@@ -18,7 +18,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 
     protected event BeforeChangeDelegate BeforeUpdate;
 
-    public TEntity? GetById(Guid id, bool asNoTracking = false)
+    public TEntity? GetById(long id, bool asNoTracking = false)
     {
         if (asNoTracking)
             return CurrentSet.AsNoTracking().FirstOrDefault(x => x.Id == id);
@@ -29,7 +29,7 @@ public class Repository<TEntity> : IRepository<TEntity>
     public TEntity? Get(Expression<Func<TEntity, bool>> filter)
         => CurrentSet.FirstOrDefault(filter);
 
-    public Guid Insert(TEntity entity)
+    public long Insert(TEntity entity)
     {
         CurrentSet.Add(entity);
         Context.SaveChanges();
@@ -43,6 +43,8 @@ public class Repository<TEntity> : IRepository<TEntity>
     {
         var entityEntry = Context.Entry(entity);
         entityEntry.State = EntityState.Modified;
+        entityEntry.Property(t => t.CreatedAt).IsModified = false;
+        entityEntry.Property(t => t.UpdatedAt).CurrentValue = DateTimeOffset.Now;
         Context.SaveChanges();
     }
 

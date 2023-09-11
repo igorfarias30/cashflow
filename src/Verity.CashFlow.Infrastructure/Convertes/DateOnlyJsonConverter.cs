@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Verity.CashFlow.Contracts.Convertes;
+namespace Verity.CashFlow.Infrastructure.Convertes;
 
 public sealed class DateOnlyJsonConverter : JsonConverter<DateOnly>
 {

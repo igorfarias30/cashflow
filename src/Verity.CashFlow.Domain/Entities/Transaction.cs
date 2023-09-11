@@ -7,8 +7,7 @@ public class Transaction : Entity
 {
     private Transaction() { }
 
-    public Transaction(Guid id, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
-        : base(id)
+    public Transaction(DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
     {
         DateOfTransaction = dateOfTransaction;
         AmountInCents = amountInCents;
@@ -17,14 +16,16 @@ public class Transaction : Entity
         Status = status;
         Comment = comment;
     }
-    public Transaction(Guid id, Guid cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
-        : this(id, dateOfTransaction, amountInCents, description, type, status, comment)
+
+    public Transaction(long id, long cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
+        : this(dateOfTransaction, amountInCents, description, type, status, comment)
     {
+        Id = id;
         CashId = cashId;
     }
 
 
-    public Guid CashId { get; set; }
+    public long CashId { get; set; }
     public Cash Cash { get; set; }
 
     public DateOnly DateOfTransaction { get; private set; }
@@ -35,8 +36,8 @@ public class Transaction : Entity
     public TransactionStatus Status { get; private set; }
 
     public static Transaction Create(DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
-       => new(Guid.NewGuid(), dateOfTransaction, amountInCents, description, type, status, comment);
+       => new(dateOfTransaction, amountInCents, description, type, status, comment);
 
-    public static Transaction Create(Guid id, Guid cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
+    public static Transaction Create(long id, long cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
        => new(id, cashId, dateOfTransaction, amountInCents, description, type, status, comment);
 }

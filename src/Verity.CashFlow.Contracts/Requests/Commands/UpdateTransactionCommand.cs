@@ -5,7 +5,7 @@ using Verity.CashFlow.Domain.Enums;
 namespace Verity.CashFlow.Contracts.Requests.Commands;
 
 public record struct UpdateTransactionCommand(
-    string Id,
+    long Id,
     DateOnly TransactionDate,
     long AmountInCents,
     string Description,

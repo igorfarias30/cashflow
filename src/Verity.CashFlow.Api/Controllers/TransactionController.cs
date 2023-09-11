@@ -25,6 +25,6 @@ public class TransactionController : CashFlowBaseController
         => await SendRequest(command);
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string id)
-        => await SendRequest(new DeleteTransactionCommand(Guid.Parse(id)));
+    public async Task<IActionResult> Delete(long id)
+        => await SendRequest(new DeleteTransactionCommand(id));
 }

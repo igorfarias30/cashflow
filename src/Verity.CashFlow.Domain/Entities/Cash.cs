@@ -8,12 +8,17 @@ public class Cash : Entity
 
     private Cash() { }
 
-    private Cash(Guid id, DateOnly dateOfCash, long startBalanceInCents, long? closedBalanceInCents)
-        : base(id)
+    private Cash(DateOnly dateOfCash, long startBalanceInCents, long? closedBalanceInCents)
     {
         DateOfCash = dateOfCash;
         StartBalanceInCents = startBalanceInCents;
         ClosedBalanceInCents = closedBalanceInCents;
+    }
+
+    private Cash(long id, DateOnly dateOfCash, long startBalanceInCents, long? closedBalanceInCents)
+        : this(dateOfCash, startBalanceInCents, closedBalanceInCents)
+    {
+        Id = id;
     }
 
     public List<Transaction> Transactions { get; private set; } = new();
@@ -31,7 +36,10 @@ public class Cash : Entity
     public long? ClosedBalanceInCents { get; private set; }
 
     public static Cash Create(DateOnly dateOfCash, long startBalanceInCents, long? closedBalanceInCents)
-        => new(Guid.NewGuid(), dateOfCash, startBalanceInCents, closedBalanceInCents);
+        => new(dateOfCash, startBalanceInCents, closedBalanceInCents);
+
+    public static Cash Create(long id, DateOnly dateOfCash, long startBalanceInCents, long? closedBalanceInCents)
+        => new(id, dateOfCash, startBalanceInCents, closedBalanceInCents);
 
     public void CloseCash()
         => IsClosed = true;

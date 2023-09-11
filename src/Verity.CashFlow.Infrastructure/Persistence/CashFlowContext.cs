@@ -1,4 +1,5 @@
 ﻿using Verity.CashFlow.Domain.Entities;
+using Verity.CashFlow.Infrastructure.Convertes;
 
 namespace Verity.CashFlow.Infrastructure.Persistence;
 
@@ -17,5 +18,12 @@ public class CashFlowContext : DbContext
             .ApplyConfigurationsFromAssembly(typeof(CashFlowContext).Assembly);
 
         base.OnModelCreating(modelBuilder);
+    }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder
+            .Properties<DateTimeOffset>()
+            .HaveConversion<DateTimeOffsetConverter>();
     }
 }

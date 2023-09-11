@@ -2,4 +2,4 @@
 
 namespace Verity.CashFlow.Contracts.Requests.Commands;
 
-public record struct DeleteTransactionCommand(Guid Id) : ICommand<Result>;
+public record struct DeleteTransactionCommand(long Id) : ICommand<Result>;
