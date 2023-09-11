@@ -22,6 +22,7 @@ global using Verity.CashFlow.Contracts.ViewModels;
 global using Verity.CashFlow.Domain.Enums;
 global using Verity.CashFlow.Domain.Entities;
 global using Verity.CashFlow.Domain.Primitives;
+global using Verity.CashFlow.Infrastructure.Convertes;
 global using Verity.CashFlow.Infrastructure.Persistence;
 global using Verity.CashFlow.Infrastructure.Services;
 global using Verity.CashFlow.Infrastructure.Services.Strategies;

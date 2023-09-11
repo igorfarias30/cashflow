@@ -1,7 +1,4 @@
-﻿using Verity.CashFlow.Domain.Entities;
-using Verity.CashFlow.Infrastructure.Convertes;
-
-namespace Verity.CashFlow.Infrastructure.Persistence;
+﻿namespace Verity.CashFlow.Infrastructure.Persistence;
 
 public class CashFlowContext : DbContext
 {

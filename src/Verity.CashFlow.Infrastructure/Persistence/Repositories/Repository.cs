@@ -26,8 +26,13 @@ public class Repository<TEntity> : IRepository<TEntity>
         return CurrentSet.FirstOrDefault(x => x.Id == id);
     }
 
-    public TEntity? Get(Expression<Func<TEntity, bool>> filter)
-        => CurrentSet.FirstOrDefault(filter);
+    public TEntity? Get(Expression<Func<TEntity, bool>> filter, bool asNoTracking = false)
+    {
+        if (asNoTracking)
+            return CurrentSet.AsNoTracking().FirstOrDefault(filter);
+
+        return CurrentSet.FirstOrDefault(filter);
+    }
 
     public long Insert(TEntity entity)
     {

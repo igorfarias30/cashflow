@@ -8,6 +8,7 @@ public class BalanceController : CashFlowBaseController
     }
 
     [HttpGet]
+    [ProducesResponseType(typeof(BalanceDetailsViewModel), 200)]
     public async Task<IActionResult> GetAll([FromQuery] DateTime dateFilter)
     {
         var dateFilterAsDateOnly = DateOnly.FromDateTime(dateFilter);

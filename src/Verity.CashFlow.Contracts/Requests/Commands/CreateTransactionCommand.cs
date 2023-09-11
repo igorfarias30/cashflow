@@ -1,4 +1,5 @@
 ﻿using OperationResult;
+using Verity.CashFlow.Contracts.ViewModels;
 using Verity.CashFlow.Domain.Enums;
 
 namespace Verity.CashFlow.Contracts.Requests.Commands;
@@ -10,4 +11,4 @@ public record struct CreateTransactionCommand(
     TransactionType Type,
     TransactionStatus Status,
     string? Comment
-) : ICommand<Result>;
+) : ICommand<Result<TransactionViewModel>>;

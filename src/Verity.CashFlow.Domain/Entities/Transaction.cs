@@ -7,8 +7,9 @@ public class Transaction : Entity
 {
     private Transaction() { }
 
-    public Transaction(DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
+    public Transaction(long cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
     {
+        CashId = cashId;
         DateOfTransaction = dateOfTransaction;
         AmountInCents = amountInCents;
         Description = description;
@@ -18,12 +19,10 @@ public class Transaction : Entity
     }
 
     public Transaction(long id, long cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
-        : this(dateOfTransaction, amountInCents, description, type, status, comment)
+        : this(cashId, dateOfTransaction, amountInCents, description, type, status, comment)
     {
         Id = id;
-        CashId = cashId;
     }
-
 
     public long CashId { get; set; }
     public Cash Cash { get; set; }
@@ -35,8 +34,8 @@ public class Transaction : Entity
     public TransactionType Type { get; private set; }
     public TransactionStatus Status { get; private set; }
 
-    public static Transaction Create(DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
-       => new(dateOfTransaction, amountInCents, description, type, status, comment);
+    public static Transaction Create(long cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
+       => new(cashId, dateOfTransaction, amountInCents, description, type, status, comment);
 
     public static Transaction Create(long id, long cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
        => new(id, cashId, dateOfTransaction, amountInCents, description, type, status, comment);

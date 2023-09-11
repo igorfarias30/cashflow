@@ -1,6 +1,4 @@
-﻿using Verity.CashFlow.Application.Services;
-
-namespace Verity.CashFlow.Api.Controllers;
+﻿namespace Verity.CashFlow.Api.Controllers;
 
 [Route("api/[controller]")]
 public class TransactionController : CashFlowBaseController
@@ -11,15 +9,18 @@ public class TransactionController : CashFlowBaseController
         _cashFlowService = cashFlowService;
     }
 
-    [HttpPost("new")]
+    [HttpPost]
+    [ProducesResponseType(typeof(TransactionViewModel), 201)]
     public async Task<IActionResult> Create(CreateTransactionCommand command)
-        => await SendRequest(command);
+        => await SendRequest(command, 201);
 
     [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<TransactionViewModel>), 200)]
     public async Task<IActionResult> GetAll([FromQuery] DateTime date)
         => await SendRequest(new GetTransactionQuery(DateOnly.FromDateTime(date)));
 
     [HttpPut]
+    [ProducesResponseType(typeof(TransactionViewModel), 200)]
     public async Task<IActionResult> Update(UpdateTransactionCommand command)
         => await SendRequest(command);
 
