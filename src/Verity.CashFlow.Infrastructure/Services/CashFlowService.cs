@@ -1,6 +1,4 @@
-﻿using OperationResult;
-
-namespace Verity.CashFlow.Infrastructure.Services;
+﻿namespace Verity.CashFlow.Infrastructure.Services;
 
 public class CashFlowService : ICashFlowService
 {
@@ -18,7 +16,6 @@ public class CashFlowService : ICashFlowService
     public async Task<Result> CloseCash()
     {
         var cashOfTheDay = await _transactionRepository
-            //.GetCashByDate(DateOnly.FromDateTime(DateTime.Now));
             .GetCashByDate(DateOnly.Parse("2023-09-09"));
 
         var cashDetails = _mapper.Map<BalanceDetailsDto>(cashOfTheDay);

@@ -1,10 +1,3 @@
-using Verity.CashFlow.Infrastructure;
-using Verity.CashFlow.Application;
-using Verity.CashFlow.Infrastructure.Persistence;
-using Serilog;
-using Verity.CashFlow.Infrastructure.Convertes;
-using Hangfire;
-
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
@@ -40,14 +33,18 @@ try
     await using var dbContext = serviceScope.ServiceProvider.GetRequiredService<CashFlowContext>();
     await dbContext.Database.EnsureDeletedAsync();
     await dbContext.Database.EnsureCreatedAsync();
+
+    // Setup recurring job to close the cash in each day
+    // The job will run each day at 23:59:00
+    var cashFlowService = serviceScope.ServiceProvider.GetRequiredService<ICashFlowService>();
+    var recurringJob = serviceScope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+
+    recurringJob.AddOrUpdate("close-cash-job", () => cashFlowService.CloseCash(), "00 59 23 * * *");
 }
 catch (Exception ex)
 {
     Log.Error(ex.Message);
 }
-
-var recurringJob = app.Services.GetRequiredService<IRecurringJobManager>();
-recurringJob.AddOrUpdate("Close cash", () => Console.WriteLine("Rodando"), "* * * * * *");
 
 app.UseHttpsRedirection();
 

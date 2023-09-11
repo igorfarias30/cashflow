@@ -8,6 +8,7 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.EntityFrameworkCore;
+global using OperationResult;
 global using System.Linq.Expressions;
 global using System.Globalization;
 global using System.Text;
