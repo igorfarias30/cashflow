@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OperationResult;
+using Verity.CashFlow.Contracts.ViewModels;
 
 namespace Verity.CashFlow.Api.Controllers;
 
@@ -32,11 +33,11 @@ public class CashFlowBaseController : ControllerBase
         };
     }
 
-    protected async Task<IActionResult> SendRequest<T>(IRequest<Result<T>> request, Func<T?, IActionResult> onSuccess)
+    protected async Task<IActionResult> SendQueryAndReturnFile(IRequest<Result<FileViewModel>> request)
     {
         return await Mediator.Send(request).ConfigureAwait(false) switch
         {
-            (true, var result, _) => onSuccess(result),
+            (true, var result, _) => File(result.Bytes, result.MymeType, result.FileName),
             var (_, _, error) => HandleError(request, error)
         };
     }

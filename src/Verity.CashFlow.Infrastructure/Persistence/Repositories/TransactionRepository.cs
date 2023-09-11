@@ -44,7 +44,7 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
             IncomeInCents = incomeInCents,
             OutcomeInCents = outcomeInCents,
             BalanceInCents = balance,
-            DateOfCashFlow = date
+            DateOfCashFlow = date,
         };
     }
 

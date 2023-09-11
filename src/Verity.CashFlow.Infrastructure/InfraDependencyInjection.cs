@@ -1,6 +1,10 @@
 ﻿using System.Reflection;
 using Mapster;
 using MapsterMapper;
+using Verity.CashFlow.Application.Services;
+using Verity.CashFlow.Application.Services.Strategies;
+using Verity.CashFlow.Infrastructure.Services;
+using Verity.CashFlow.Infrastructure.Services.Strategies;
 
 namespace Verity.CashFlow.Infrastructure;
 
@@ -33,15 +37,25 @@ public static class InfraDependencyInjection
 
         serviceCollection.AddSingleton(config);
         serviceCollection.AddScoped<IMapper, ServiceMapper>();
+
         return serviceCollection;
     }
+    public static IServiceCollection AddServices(this IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddScoped<IDataExporterStrategyService, DataExporterStrategyService>();
+        serviceCollection.AddScoped<IDataExporterByKindStrategy, DataExporterCsvStrategy>();
+
+        return serviceCollection;
+    }
+
 
     public static IServiceCollection AddInfra(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
         serviceCollection
             .AddDatabase(configuration)
             .AddRepositories()
-            .AddMappings();
+            .AddMappings()
+            .AddServices();
 
         return serviceCollection;
     }
