@@ -4,7 +4,7 @@ namespace Verity.CashFlow.Domain.Entities;
 
 public class Cash : Entity
 {
-    //private readonly List<Transaction> _transactions = new();
+    private readonly List<Transaction> _transactions = new();
 
     private Cash() { }
 
@@ -21,7 +21,7 @@ public class Cash : Entity
         Id = id;
     }
 
-    public List<Transaction> Transactions { get; private set; } = new();
+    public List<Transaction> Transactions => _transactions;
     public DateOnly DateOfCash { get; private set; }
     public bool IsClosed { get; private set; } = false;
 

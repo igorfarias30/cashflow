@@ -1,18 +1,15 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using OperationResult;
-using Verity.CashFlow.Contracts.ViewModels;
-
-namespace Verity.CashFlow.Api.Controllers;
+﻿namespace Verity.CashFlow.Api.Controllers;
 
 [ApiController]
 public class CashFlowBaseController : ControllerBase
 {
     protected ISender Mediator { get;}
+    private readonly ILogger _logger;
 
-    public CashFlowBaseController(ISender mediator)
+    public CashFlowBaseController(ISender mediator, ILogger logger)
     {
         Mediator = mediator;
+        _logger = logger;
     }
 
     protected async Task<IActionResult> SendRequest<T>(IRequest<Result<T>> request, int statusCode = StatusCodes.Status200OK)
@@ -48,6 +45,9 @@ public class CashFlowBaseController : ControllerBase
         {
             _ => StatusCode(500)
         };
+
+        _logger
+            .Error("RequestName: {EventName} | Info: {@Info} | Date: {TimeStamp} | Exception: {Exception}", nameof(HandleError), request, DateTimeOffset.UtcNow, error);
 
         return actionResult;
     }

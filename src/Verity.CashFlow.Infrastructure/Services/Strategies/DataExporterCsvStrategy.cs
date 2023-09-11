@@ -1,11 +1,4 @@
-﻿using System.Globalization;
-using System.Text;
-using CsvHelper;
-using CsvHelper.Configuration;
-using Verity.CashFlow.Application.Services;
-using Verity.CashFlow.Application.Services.Strategies;
-
-namespace Verity.CashFlow.Infrastructure.Services.Strategies;
+﻿namespace Verity.CashFlow.Infrastructure.Services.Strategies;
 
 public class DataExporterCsvStrategy : IDataExporterByKindStrategy
 {

@@ -20,10 +20,10 @@ internal class CashEntityTypeConfiguration : IEntityTypeConfiguration<Cash>
            .FindNavigation(nameof(Cash.Transactions))!
            .SetPropertyAccessMode(PropertyAccessMode.Field);
 
-        //builder
-        //    .Navigation(cash => cash.Transactions)
-        //    .Metadata
-        //    .SetField("_transactions");
+        builder
+            .Navigation(cash => cash.Transactions)
+            .Metadata
+            .SetField("_transactions");
 
         builder
             .Navigation(s => s.Transactions)

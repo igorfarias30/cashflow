@@ -8,7 +8,7 @@ namespace Verity.CashFlow.Api.Controllers;
 [Route("api/[controller]")]
 public class TransactionController : CashFlowBaseController
 {
-    public TransactionController(ISender mediator) : base(mediator)
+    public TransactionController(ISender mediator, ILogger logger) : base(mediator, logger)
     {
     }
 

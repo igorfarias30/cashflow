@@ -1,6 +1,4 @@
-﻿using Verity.CashFlow.Contracts.DTOs;
-
-namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
+﻿namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
 
 public class TransactionRepository : Repository<Transaction>, ITransactionRepository
 {

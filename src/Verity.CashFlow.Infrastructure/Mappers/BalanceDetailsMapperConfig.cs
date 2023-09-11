@@ -1,8 +1,4 @@
-﻿using Mapster;
-using Verity.CashFlow.Contracts.DTOs;
-using Verity.CashFlow.Contracts.ViewModels;
-
-namespace Verity.CashFlow.Infrastructure.Mappers;
+﻿namespace Verity.CashFlow.Infrastructure.Mappers;
 
 internal class BalanceDetailsMapperConfig : IRegister
 {

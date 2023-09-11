@@ -1,10 +1,4 @@
-﻿using System.IO;
-using Mapster;
-using MapsterMapper;
-using Microsoft.EntityFrameworkCore;
-using Verity.CashFlow.Application.Services;
-
-namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
+﻿namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
 
 public class GetBalanceDetailsInCsvQueryHandler : BaseQueryHandler<GetBalanceDetailsInCsvQuery, Result<FileViewModel>>
 {
