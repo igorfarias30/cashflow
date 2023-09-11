@@ -1,9 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Verity.CashFlow.Contracts.Requests.Commands;
-using Verity.CashFlow.Contracts.Requests.Queries;
-
-namespace Verity.CashFlow.Api.Controllers;
+﻿namespace Verity.CashFlow.Api.Controllers;
 
 [Route("api/[controller]")]
 public class TransactionController : CashFlowBaseController
