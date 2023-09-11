@@ -17,6 +17,12 @@ public class Transaction : Entity
         Status = status;
         Comment = comment;
     }
+    public Transaction(Guid id, Guid cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
+        : this(id, dateOfTransaction, amountInCents, description, type, status, comment)
+    {
+        CashId = cashId;
+    }
+
 
     public Guid CashId { get; set; }
     public Cash Cash { get; set; }
@@ -30,4 +36,7 @@ public class Transaction : Entity
 
     public static Transaction Create(DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
        => new(Guid.NewGuid(), dateOfTransaction, amountInCents, description, type, status, comment);
+
+    public static Transaction Create(Guid id, Guid cashId, DateOnly dateOfTransaction, long amountInCents, string description, TransactionType type, TransactionStatus status, string? comment)
+       => new(id, cashId, dateOfTransaction, amountInCents, description, type, status, comment);
 }
