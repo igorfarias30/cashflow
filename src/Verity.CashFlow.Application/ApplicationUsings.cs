@@ -5,7 +5,7 @@ global using MediatR;
 global using OperationResult;
 
 global using Verity.CashFlow.Application.Repositories;
-global using Verity.CashFlow.Application.Services;
+global using Verity.CashFlow.Application.Services.Exporter;
 global using Verity.CashFlow.Contracts.Requests.Commands;
 global using Verity.CashFlow.Contracts.Requests.Queries;
 global using Verity.CashFlow.Contracts.ViewModels;

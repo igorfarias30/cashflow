@@ -1,4 +1,6 @@
-﻿namespace Verity.CashFlow.Infrastructure.Services.Strategies;
+﻿using Verity.CashFlow.Application.Services.Exporter;
+
+namespace Verity.CashFlow.Infrastructure.Services.Strategies;
 
 public class DataExporterCsvStrategy : IDataExporterByKindStrategy
 {

@@ -44,6 +44,9 @@ public class Cash : Entity
     public void CloseCash()
         => IsClosed = true;
 
+    public void SetClosedBalanceInCents(long closedBalance)
+        => ClosedBalanceInCents = closedBalance;
+
     public void AddTransaction(Transaction transaction)
        => Transactions.Add(transaction);
 }

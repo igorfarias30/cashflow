@@ -1,10 +1,14 @@
-﻿namespace Verity.CashFlow.Api.Controllers;
+﻿using Verity.CashFlow.Application.Services;
+
+namespace Verity.CashFlow.Api.Controllers;
 
 [Route("api/[controller]")]
 public class TransactionController : CashFlowBaseController
 {
-    public TransactionController(ISender mediator, ILogger logger) : base(mediator, logger)
+    private readonly ICashFlowService _cashFlowService;
+    public TransactionController(ISender mediator, ILogger logger, ICashFlowService cashFlowService) : base(mediator, logger)
     {
+        _cashFlowService = cashFlowService;
     }
 
     [HttpPost("new")]
@@ -22,4 +26,11 @@ public class TransactionController : CashFlowBaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(long id)
         => await SendRequest(new DeleteTransactionCommand(id));
+
+    [HttpDelete("test")]
+    public async Task<IActionResult> Test()
+    {
+        await _cashFlowService.CloseCash();
+        return Ok();
+    }
 }

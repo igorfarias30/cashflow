@@ -6,7 +6,17 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
     {
     }
 
-    public IQueryable<Transaction> GetAllByDate(DateOnly date)
+    public async Task<Cash> GetCashByDate(DateOnly date)
+    {
+        var transactions = await Context
+            .Cashes
+            .Include(x => x.Transactions)
+            .FirstOrDefaultAsync(cash => cash.DateOfCash == date);
+
+        return transactions;
+    }
+
+    public IQueryable<Transaction> GetAllTransactionsByDate(DateOnly date)
     {
         var transactions = CurrentSet
             .AsNoTracking()
@@ -44,14 +54,5 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
             BalanceInCents = balance,
             DateOfCashFlow = date,
         };
-    }
-
-    public IQueryable<Cash> GetCashByDate(DateOnly date)
-    {
-        return Context
-                .Cashes
-                .Include(cash => cash.Transactions)
-                .AsNoTracking()
-                .Where(cash => cash.DateOfCash == date);
     }
 }

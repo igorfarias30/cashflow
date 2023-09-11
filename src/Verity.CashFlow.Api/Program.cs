@@ -3,6 +3,7 @@ using Verity.CashFlow.Application;
 using Verity.CashFlow.Infrastructure.Persistence;
 using Serilog;
 using Verity.CashFlow.Infrastructure.Convertes;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,10 +46,18 @@ catch (Exception ex)
     Log.Error(ex.Message);
 }
 
+var recurringJob = app.Services.GetRequiredService<IRecurringJobManager>();
+recurringJob.AddOrUpdate("Close cash", () => Console.WriteLine("Rodando"), "* * * * * *");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{
+    DashboardTitle = "Cash Flow Process",
+});
 
 app.Run();

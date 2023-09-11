@@ -1,4 +1,6 @@
-﻿namespace Verity.CashFlow.Infrastructure;
+﻿using Verity.CashFlow.Application.Services.Exporter;
+
+namespace Verity.CashFlow.Infrastructure;
 
 public static class InfraDependencyInjection
 {
@@ -37,9 +39,20 @@ public static class InfraDependencyInjection
         serviceCollection.AddScoped<IDataExporterStrategyService, DataExporterStrategyService>();
         serviceCollection.AddScoped<IDataExporterByKindStrategy, DataExporterCsvStrategy>();
 
+        serviceCollection.AddScoped<ICashFlowService, CashFlowService>();
+
         return serviceCollection;
     }
 
+    public static IServiceCollection AddHangfire(this IServiceCollection serviceCollection, IConfiguration configuration)
+    {
+        serviceCollection
+            .AddHangfire(config => config.UsePostgreSqlStorage(configuration.GetConnectionString("Default")));
+
+        serviceCollection.AddHangfireServer();
+
+        return serviceCollection;
+    }
 
     public static IServiceCollection AddInfra(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
@@ -47,7 +60,8 @@ public static class InfraDependencyInjection
             .AddDatabase(configuration)
             .AddRepositories()
             .AddMappings()
-            .AddServices();
+            .AddServices()
+            .AddHangfire(configuration);
 
         return serviceCollection;
     }

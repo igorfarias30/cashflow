@@ -19,6 +19,13 @@ internal class BalanceDetailsMapperConfig : IRegister
         config.NewConfig<Cash, BalanceDetailsViewModel>()
             .Map(dest => dest.IncomeInCents, _incomeRetrieve)
             .Map(dest => dest.OutcomeInCents, _outcomeRetrieve)
+            .Map(dest => dest.DateOfCashFlow, src => src.DateOfCash)
+            .Map(dest => dest.Transactions, src => src.Transactions);
+
+        config.NewConfig<Cash, BalanceDetailsDto>()
+            .Map(dest => dest.IncomeInCents, _incomeRetrieve)
+            .Map(dest => dest.OutcomeInCents, _outcomeRetrieve)
+            .Map(dest => dest.DateOfCashFlow, src => src.DateOfCash)
             .Map(dest => dest.Transactions, src => src.Transactions);
 
         config.NewConfig<BalanceDetailsDto, BalanceDetailsViewModel>()

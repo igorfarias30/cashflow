@@ -16,7 +16,7 @@ public class GetTransactionsQueryHandler : BaseQueryHandler<GetTransactionQuery,
 
     public override Task<Result<IQueryable<TransactionViewModel>>> Handle(GetTransactionQuery request, CancellationToken cancellationToken)
     {
-        var transactions = _transactionRepository.GetAllByDate(request.date);
+        var transactions = _transactionRepository.GetAllTransactionsByDate(request.date);
         return Result.Success(_mapper.From(transactions).ProjectToType<TransactionViewModel>());
     }
 }

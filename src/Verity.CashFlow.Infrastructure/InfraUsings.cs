@@ -1,5 +1,7 @@
 ﻿global using CsvHelper;
 global using CsvHelper.Configuration;
+global using Hangfire;
+global using Hangfire.PostgreSql;
 global using Mapster;
 global using MapsterMapper;
 global using Microsoft.Extensions.Configuration;
