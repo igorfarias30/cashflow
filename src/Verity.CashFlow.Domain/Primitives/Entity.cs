@@ -8,7 +8,7 @@ public abstract class Entity : IEquatable<Entity>
 
     protected Entity(Guid id) => Id = id;
 
-    public Guid Id { get; private init; }
+    public Guid Id { get; private set; }
 
     public DateTimeOffset CreatedAt { get; private set; } = DateTimeOffset.UtcNow;
     public DateTimeOffset? UpdatedAt { get; private set; }

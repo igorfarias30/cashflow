@@ -1,5 +1,4 @@
 ﻿using Verity.CashFlow.Contracts.DTOs;
-using Verity.CashFlow.Domain.Entities;
 
 namespace Verity.CashFlow.Infrastructure.Persistence.Repositories;
 
@@ -7,6 +6,12 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
 {
     public TransactionRepository(CashFlowContext context) : base(context)
     {
+    }
+
+    public IQueryable<Transaction> GetAllByDate(DateOnly date)
+    {
+        var transactions = CurrentSet.AsNoTracking().Where(transaction => transaction.DateOfTransaction == date);
+        return transactions;
     }
 
     public async Task<BalanceDetailsDto?> GetBalanceDetailsByDate(DateOnly date)
@@ -23,7 +28,7 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
 
         var cash = Context
                 .Cashes
-                .Include(cash => cash.Transactions)
+                //.Include(cash => cash.Transactions)
                 .AsNoTracking()
                 .Where(cash => cash.DateOfCash == date);
 
