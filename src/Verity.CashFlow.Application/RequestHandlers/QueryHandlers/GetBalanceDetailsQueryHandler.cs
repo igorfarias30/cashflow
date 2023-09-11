@@ -1,5 +1,4 @@
-﻿using Mapster;
-using MapsterMapper;
+﻿using MapsterMapper;
 
 namespace Verity.CashFlow.Application.RequestHandlers.QueryHandlers;
 
@@ -16,7 +15,7 @@ public class GetBalanceDetailsQueryHandler : BaseQueryHandler<GetBalanceDetailsQ
 
     public override async Task<Result<BalanceDetailsViewModel>> Handle(GetBalanceDetailsQuery request, CancellationToken cancellationToken)
     {
-        var balance = await _transactionRepository.GetBalanceDetailsByDate(request.DateOfCash);
-        return Result.Success(_mapper.Map<BalanceDetailsViewModel>(balance));
+        var balanceDetails = await _transactionRepository.GetBalanceDetailsByDate(request.DateOfCash);
+        return Result.Success(_mapper.Map<BalanceDetailsViewModel>(balanceDetails!));
     }
 }

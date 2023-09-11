@@ -10,46 +10,34 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
 
     public IQueryable<Transaction> GetAllByDate(DateOnly date)
     {
-        var transactions = CurrentSet.AsNoTracking().Where(transaction => transaction.DateOfTransaction == date);
+        var transactions = CurrentSet
+            .AsNoTracking()
+            .Where(transaction => transaction.DateOfTransaction == date);
+        
         return transactions;
     }
 
     public async Task<BalanceDetailsDto?> GetBalanceDetailsByDate(DateOnly date)
     {
-        //var cash = (
-        //    from cashes in Context.Cashes
-        //    join transactions in Context.Transactions on cashes.Id.ToString() equals transactions.CashId.ToString()
-        //    where cashes.DateOfCash == date
-        //    select cashes
-        //    );
-
-        //var cash = Context
-        //        .Cashes.ToList();
-
-        var cash = Context
+        var currentDateCash = await Context
                 .Cashes
-                //.Include(cash => cash.Transactions)
+                .Include(cash => cash.Transactions)
                 .AsNoTracking()
-                .Where(cash => cash.DateOfCash == date);
+                .FirstOrDefaultAsync(cash => cash.DateOfCash == date);
 
-        //.Include(transaction => transaction.Transactions)
-        //.AsNoTracking()
-        //.Where(cash => cash.DateOfCash == date)
-        //.ToListAsync();
-
-        var incomeInCents = cash!.First()
+        var incomeInCents = currentDateCash!
             .Transactions
             .Where(x => x.Type == TransactionType.Income)
             .Select(x => x.AmountInCents)
             .Sum();
 
-        var outcomeInCents = cash!.First()
+        var outcomeInCents = currentDateCash!
             .Transactions
             .Where(x => x.Type == TransactionType.Outcome)
             .Select(x => x.AmountInCents)
             .Sum();
 
-        var balance = incomeInCents - outcomeInCents;
+        var balance = currentDateCash.StartBalanceInCents + (incomeInCents - outcomeInCents);
 
         return new BalanceDetailsDto
         {
@@ -58,5 +46,14 @@ public class TransactionRepository : Repository<Transaction>, ITransactionReposi
             BalanceInCents = balance,
             DateOfCashFlow = date
         };
+    }
+
+    public IQueryable<Cash> GetCashByDate(DateOnly date)
+    {
+        return Context
+                .Cashes
+                .Include(cash => cash.Transactions)
+                .AsNoTracking()
+                .Where(cash => cash.DateOfCash == date);
     }
 }
